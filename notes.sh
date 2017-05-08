@@ -19,6 +19,19 @@ function get_filename {
     fi
 }
 
+function usage {
+    cat <<fin
+Usage: notes.sh [[-h] [-l] [-e] [-a note] [-c comment]] filename
+
+Options:
+  -h, --help    Help
+  -l, --list    List the notes in $NOTES
+  -e, --edit    Open the note in filename in vim
+  -a, --append  Append note to filename
+  -c, --comment Prepend a comment to the note
+fin
+}
+
 ##### Main
 note=""
 comment=""
@@ -36,6 +49,8 @@ while [ "$1" != "" ]; do
                             ;;
         -c | --comment )    shift
                             comment=$1
+                            ;;
+        -h | --help )       usage
                             ;;
         * )                 get_filename $1
                             ;;
