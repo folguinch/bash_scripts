@@ -1,5 +1,9 @@
-#!/bin/bash -x
-# A simple script to manage notes in the command line
+#!/bin/bash 
+# A simple script to manage and write notes in the command line
+#
+# Created by: Fernando Olguin
+# Last modify: 09 May 2017
+#
 
 ##### Constants
 NOTES=~/Notes
@@ -45,10 +49,10 @@ while [ "$1" != "" ]; do
                             exit
                             ;;
         -a | --append )     shift
-                            note=$1
+                            note="$1\n"
                             ;;
         -c | --comment )    shift
-                            comment=$1
+                            comment="# $1\n"
                             ;;
         -h | --help )       usage
                             ;;
@@ -57,3 +61,5 @@ while [ "$1" != "" ]; do
     esac
     shift
 done
+
+echo -e $comment$note >> "$NOTES/$filename" 
